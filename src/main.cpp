@@ -28,15 +28,12 @@ int main(int argc, char * argv[])
 
   for (auto && header: warehouses.getHeaders())
   {
-    std::cout << header << "\t\t";
+    std::cout << header << ' ';
   }
   std::cout << '\n';
-  for (auto && res: result1)
+  for (auto && row: result1)
   {
-    std::cout << res.id << "\t\t\t";
-    std::cout << res.name << "\t\t\t";
-    std::cout << res.quantity << "\t\t\t";
-    std::cout << res.amount << '\n';
+    std::cout << row << '\n';
   }
   std::cout << '\n';
   ///////////////////
@@ -45,15 +42,12 @@ int main(int argc, char * argv[])
 
   for (auto && header: charges.getHeaders())
   {
-    std::cout << header << "\t\t\t";
+    std::cout << header << ' ';
   }
   std::cout << '\n';
-  for (auto && res: result2)
+  for (auto && row: result2)
   {
-    std::cout << res.id << "\t\t\t";
-    std::cout << res.amount << "\t\t\t";
-    std::cout << res.charge_data << "\t\t\t";
-    std::cout << res.expense_item_id << '\n';
+    std::cout << row << '\n';
   }
   std::cout << '\n';
   ///////////////////
@@ -62,13 +56,12 @@ int main(int argc, char * argv[])
 
   for (auto && header: expense_item.getHeaders())
   {
-    std::cout << header << "\t\t\t";
+    std::cout << header << ' ';
   }
   std::cout << '\n';
-  for (auto && res: result3)
+  for (auto && row: result3)
   {
-    std::cout << res.id << "\t\t\t";
-    std::cout << res.name << '\n';
+    std::cout << row << '\n';
   }
   std::cout << '\n';
   ///////////////////
@@ -77,16 +70,12 @@ int main(int argc, char * argv[])
 
   for (auto && header: sales.getHeaders())
   {
-    std::cout << header << "\t\t\t";
+    std::cout << header << ' ';
   }
   std::cout << '\n';
-  for (auto && res: result4)
+  for (auto && row: result4)
   {
-    std::cout << res.id << "\t\t\t";
-    std::cout << res.amount << "\t\t\t";
-    std::cout << res.quantity << "\t\t\t";
-    std::cout << res.sale_date << "\t\t\t";
-    std::cout << res.warehouse_id << '\n';
+    std::cout << row << '\n';
   }
   std::cout << '\n';
 

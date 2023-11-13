@@ -1,5 +1,14 @@
 #include "DB/tables/warehouses.hpp"
 
+std::ostream & DB::operator<<(std::ostream & out, const WarehousesRow & row)
+{
+  out << row.id << ' ';
+  out << row.name << ' ';
+  out << row.quantity << ' ';
+  out << row.amount;
+  return out;
+}
+
 DB::WarehousesRow::WarehousesRow(pqxx::const_result_iterator::reference & res):
   id{ res[0].as< int >() },
   name{ res[1].as< std::string >() },

@@ -37,9 +37,12 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 # PSQL libs
 
-set(libpqxxdir "external/libpqxx-7.8.1")
+set(libpqxxdir "${EXTERNAL_DIR}/libpqxx-7.8.1")
 
 set(SKIP_BUILD_TEST ON)
+set(BUILD_SHARED_LIBS OFF)
+set(BUILD_DOC OFF)
+set(INSTALL_TEST OFF)
 
 IF (WIN32)
     set(BUILD_SHARED_LIBS ON)

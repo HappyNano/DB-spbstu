@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iosfwd>
 
 #include <pqxx/pqxx>
 
@@ -17,6 +18,8 @@ namespace DB
 
     ChargesRow(pqxx::const_result_iterator::reference & res);
   };
+
+  std::ostream & operator<<(std::ostream & out, const ChargesRow & row);
 
   class TableCharges
   {

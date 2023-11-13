@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iosfwd>
 
 #include <pqxx/pqxx>
 
@@ -18,6 +19,8 @@ namespace DB
 
     SalesRow(pqxx::const_result_iterator::reference & res);
   };
+
+  std::ostream & operator<<(std::ostream & out, const SalesRow & row);
 
   class TableSales
   {

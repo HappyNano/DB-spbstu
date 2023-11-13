@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iosfwd>
 
 #include <pqxx/pqxx>
 
@@ -15,6 +16,8 @@ namespace DB
 
     ExpenseItemsRow(pqxx::const_result_iterator::reference & res);
   };
+
+  std::ostream & operator<<(std::ostream & out, const ExpenseItemsRow & row);
 
   class TableExpenseItems
   {

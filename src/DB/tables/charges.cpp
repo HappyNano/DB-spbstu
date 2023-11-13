@@ -1,5 +1,14 @@
 #include "DB/tables/charges.hpp"
 
+std::ostream & DB::operator<<(std::ostream & out, const ChargesRow & row)
+{
+  out << row.id << ' ';
+  out << row.amount << ' ';
+  out << row.charge_data << ' ';
+  out << row.expense_item_id;
+  return out;
+}
+
 DB::ChargesRow::ChargesRow(pqxx::const_result_iterator::reference & res):
   id{ res[0].as< int >() },
   amount{ res[1].as< double >() },

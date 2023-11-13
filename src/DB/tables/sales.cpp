@@ -1,5 +1,15 @@
 #include "DB/tables/sales.hpp"
 
+std::ostream & DB::operator<<(std::ostream & out, const SalesRow & row)
+{
+  out << row.id << ' ';
+  out << row.amount << ' ';
+  out << row.quantity << ' ';
+  out << row.sale_date << ' ';
+  out << row.warehouse_id;
+  return out;
+}
+
 DB::SalesRow::SalesRow(pqxx::const_result_iterator::reference & res):
   id{ res[0].as< int >() },
   amount{ res[1].as< double >() },

@@ -1,5 +1,12 @@
 #include "DB/tables/expense_items.hpp"
 
+std::ostream & DB::operator<<(std::ostream & out, const ExpenseItemsRow & row)
+{
+  out << row.id << ' ';
+  out << row.name;
+  return out;
+}
+
 DB::ExpenseItemsRow::ExpenseItemsRow(pqxx::const_result_iterator::reference & res):
   id{ res[0].as< int >() },
   name{ res[1].as< std::string >() }

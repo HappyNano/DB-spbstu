@@ -12,7 +12,7 @@ cd "$BUILD_DIR"
 
 if [[ "$1" == "--configure" ]]; then
   # Вызываем cmake для генерации файлов сборки
-  cmake "$PROJECT_ROOT" -DCMAKE_BUILD_TYPE=Release
+  cmake "$PROJECT_ROOT"
 fi
 
 # Выполняем make для компиляции проекта
