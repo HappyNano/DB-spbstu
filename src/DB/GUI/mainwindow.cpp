@@ -4,11 +4,20 @@
 
 // #define button
 
-MainWindow::MainWindow(QWidget * parent):
+MainWindow::MainWindow(const TableWindow::tables_ptr & tables_ptr, QWidget * parent):
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+
+  _tablewindow = new TableWindow(tables_ptr);
+  connect(ui->showTablesButton,
+   &QPushButton::clicked,
+   [&]()
+   {
+     _tablewindow->show();
+     _tablewindow->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
+   });
 }
 
 MainWindow::~MainWindow()

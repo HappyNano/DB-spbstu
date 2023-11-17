@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include "DB/GUI/tablewindow.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -16,13 +17,14 @@ class MainWindow: public QMainWindow
   Q_OBJECT
 
  public:
-  MainWindow(QWidget * parent = nullptr);
+  MainWindow(const TableWindow::tables_ptr & tables_ptr, QWidget * parent = nullptr);
   ~MainWindow();
 
  private:
   Ui::MainWindow * ui;
   QStandardItemModel * model;
 
+  TableWindow * _tablewindow;
 };
 
 #endif
