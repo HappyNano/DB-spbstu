@@ -30,6 +30,15 @@ MainWindow::MainWindow(const DB::Connection::shared & connection_ptr, QWidget * 
      _tablewindow->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
    });
 
+  _editorwindow = new EditorWindow(_tables_ptr);
+  connect(ui->editTablesButton,
+   &QPushButton::clicked,
+   [&]()
+   {
+     _editorwindow->show();
+     _editorwindow->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
+   });
+
   ui->centralwidget->setEnabled(false);
 
   _logindialog = new LoginDialog(_tables_ptr);

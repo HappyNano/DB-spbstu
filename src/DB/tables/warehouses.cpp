@@ -52,7 +52,11 @@ std::set< std::pair< int, std::string > > DB::TableWarehouses::getProducts()
 
 void DB::TableWarehouses::insert(const std::string & name, int quantity, double amount)
 {
-  _pq_worker->exec("INSERT INTO charges(name, quantity, amount) VALUES('" + _pq_worker->esc(name) + "', " + std::to_string(quantity) +
+  _pq_worker->exec("INSERT INTO warehouses(name, quantity, amount) VALUES('" + _pq_worker->esc(name) + "', " + std::to_string(quantity) +
                    ", " + std::to_string(amount) + ")");
-  _pq_worker->commit();
+}
+
+void DB::TableWarehouses::remove(int id)
+{
+  _pq_worker->exec("DELETE FROM warehouses WHERE id=" + std::to_string(id));
 }

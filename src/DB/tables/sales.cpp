@@ -43,7 +43,11 @@ std::vector< typename DB::TableSales::row_t > DB::TableSales::selectAll()
 
 void DB::TableSales::insert(double amount, int quantity, const std::string & sale_date, int warehouse_id)
 {
-  _pq_worker->exec("INSERT INTO charges(amount, quantity, sale_date, warehouse_id) VALUES(" + std::to_string(amount) + ", " +
+  _pq_worker->exec("INSERT INTO sales(amount, quantity, sale_date, warehouse_id) VALUES(" + std::to_string(amount) + ", " +
                    std::to_string(quantity) + ", '" + _pq_worker->esc(sale_date) + "', " + std::to_string(warehouse_id) + ")");
-  _pq_worker->commit();
+}
+
+void DB::TableSales::remove(int id)
+{
+  _pq_worker->exec("DELETE FROM sales WHERE id=" + std::to_string(id));
 }

@@ -45,6 +45,7 @@ namespace DB
     std::set< std::pair< int, std::string > > getProducts();
 
     void insert(const std::string & name, int quantity, double amount);
+    void remove(int id);
 
    private:
     pq_worker_ptr _pq_worker;

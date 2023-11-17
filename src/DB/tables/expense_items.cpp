@@ -48,6 +48,10 @@ std::set< std::pair< int, std::string > > DB::TableExpenseItems::getExpenseItems
 
 void DB::TableExpenseItems::insert(const std::string & name)
 {
-  _pq_worker->exec("INSERT INTO charges(name) VALUES('" + _pq_worker->esc(name) + "')");
-  _pq_worker->commit();
+  _pq_worker->exec("INSERT INTO expense_items(name) VALUES('" + _pq_worker->esc(name) + "')");
+}
+
+void DB::TableExpenseItems::remove(int id)
+{
+  _pq_worker->exec("DELETE FROM expense_items WHERE id = " + std::to_string(id));
 }

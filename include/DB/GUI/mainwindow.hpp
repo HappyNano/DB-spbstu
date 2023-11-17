@@ -6,6 +6,7 @@
 #include "DB/GUI/tablewindow.hpp"
 #include "DB/GUI/error_dialog.hpp"
 #include "DB/GUI/login_dialog.hpp"
+#include "DB/GUI/editorwindow.hpp"
 #include "DB/connection.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -33,6 +34,7 @@ class MainWindow: public QMainWindow
   TableWindow * _tablewindow;
   ErrorDialog * _errordialog;
   LoginDialog * _logindialog;
+  EditorWindow * _editorwindow;
 };
 
 #endif

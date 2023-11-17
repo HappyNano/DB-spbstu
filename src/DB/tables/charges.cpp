@@ -43,5 +43,9 @@ void DB::TableCharges::insert(double amount, const std::string & charge_data, in
 {
   _pq_worker->exec("INSERT INTO charges(amount, charge_data, expense_item_id) VALUES(" + std::to_string(amount) + ", '" +
                    _pq_worker->esc(charge_data) + "', " + std::to_string(expense_item_id) + ")");
-  _pq_worker->commit();
+}
+
+void DB::TableCharges::remove(int id)
+{
+  _pq_worker->exec("DELETE FROM charges WHERE id = " + std::to_string(id));
 }

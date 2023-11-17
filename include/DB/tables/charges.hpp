@@ -43,6 +43,7 @@ namespace DB
     std::vector< row_t > selectAll();
 
     void insert(double amount, const std::string & charge_data, int expense_item_id);
+    void remove(int id);
 
    private:
     pq_worker_ptr _pq_worker;

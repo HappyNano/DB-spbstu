@@ -44,6 +44,7 @@ namespace DB
     std::set< std::pair< int, std::string > > getExpenseItems();
 
     void insert(const std::string & name);
+    void remove(int id);
 
    private:
     pq_worker_ptr _pq_worker;
