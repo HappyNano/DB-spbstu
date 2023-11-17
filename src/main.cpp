@@ -5,6 +5,7 @@
 
 #include "DB/GUI/mainwindow.hpp"
 #include "DB/tables/tables.hpp"
+#include "DB/connection.hpp"
 
 #include <QApplication>
 #include <QLocale>
@@ -12,8 +13,7 @@
 
 int main(int argc, char * argv[])
 {
-  pqxx::connection c{ "dbname = lab user = admin password = admin hostaddr = 127.0.0.1 port = 5432" };
-  auto worker_ptr = std::make_shared< pqxx::work >(c);
+  auto connection_ptr = std::make_shared< DB::Connection >("dbname = lab user = admin password = admin hostaddr = 127.0.0.1 port = 5432");
 
   // // int employee_id = txn.query_value< int >(
   // //  "SELECT *"
@@ -85,10 +85,9 @@ int main(int argc, char * argv[])
   // Make our change definite.
   // return run();
 
-  auto tables_ptr = std::make_shared< DB::Tables >(worker_ptr);
+  auto tables_ptr = std::make_shared< DB::Tables >(connection_ptr->worker());
   QApplication a(argc, argv);
-  MainWindow w(tables_ptr);
+  MainWindow w(connection_ptr);
 
-  w.show();
   return a.exec();
 }

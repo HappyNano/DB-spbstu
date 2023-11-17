@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include "DB/GUI/tablewindow.hpp"
+#include "DB/GUI/error_dialog.hpp"
+#include "DB/GUI/login_dialog.hpp"
+#include "DB/connection.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -17,14 +20,19 @@ class MainWindow: public QMainWindow
   Q_OBJECT
 
  public:
-  MainWindow(const TableWindow::tables_ptr & tables_ptr, QWidget * parent = nullptr);
+  MainWindow(const DB::Connection::shared & connection_ptr, QWidget * parent = nullptr);
   ~MainWindow();
 
  private:
   Ui::MainWindow * ui;
   QStandardItemModel * model;
 
+  DB::Connection::shared _connection_ptr;
+  std::shared_ptr< DB::Tables > _tables_ptr;
+
   TableWindow * _tablewindow;
+  ErrorDialog * _errordialog;
+  LoginDialog * _logindialog;
 };
 
 #endif

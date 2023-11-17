@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginDialog</class>
+ <widget class="QDialog" name="LoginDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>308</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+#LoginDialog {
+position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+
+
+
+background: qradialgradient(cx:0.3, cy:0.86, radius:1, fx:0.3, fy:0.86, stop:0 rgba(255,255,255,0.03), stop:0.08 rgba(255,255,255,0.03), stop:0.08 transparent, stop:0.92 transparent), 
+              qradialgradient(cx:0.55, cy:1, radius:1, fx:0.55, fy:1, stop:0 rgba(255,255,255,0.03), stop:0.08 rgba(255,255,255,0.03), stop:0.08 transparent, stop:0.92 transparent), 
+              qradialgradient(cx:0.4, cy:0.75, radius:1, fx:0.4, fy:0.75, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.07, cy:0.99, radius:1, fx:0.07, fy:0.99, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.69, cy:0.76, radius:1, fx:0.69, fy:0.76, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.02, cy:0.35, radius:1, fx:0.02, fy:0.35, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.14, cy:0.48, radius:1, fx:0.14, fy:0.48, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.28, cy:0.87, radius:1, fx:0.28, fy:0.87, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.65, cy:0.14, radius:1, fx:0.65, fy:0.14, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.51, cy:0.36, radius:1, fx:0.51, fy:0.36, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.06, cy:0.93, radius:1, fx:0.06, fy:0.93, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 rgb(23, 233, 173), stop:1 rgb(29, 24, 208));
+}</string>
+  </property>
+  <widget class="QWidget" name="background" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#background
+{
+background: qradialgradient(cx:0.3, cy:0.86, radius:1, fx:0.3, fy:0.86, stop:0 rgba(255,255,255,0.03), stop:0.08 rgba(255,255,255,0.03), stop:0.08 transparent, stop:0.92 transparent), 
+              qradialgradient(cx:0.55, cy:1, radius:1, fx:0.55, fy:1, stop:0 rgba(255,255,255,0.03), stop:0.08 rgba(255,255,255,0.03), stop:0.08 transparent, stop:0.92 transparent), 
+              qradialgradient(cx:0.4, cy:0.75, radius:1, fx:0.4, fy:0.75, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.07, cy:0.99, radius:1, fx:0.07, fy:0.99, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.69, cy:0.76, radius:1, fx:0.69, fy:0.76, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.02, cy:0.35, radius:1, fx:0.02, fy:0.35, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.14, cy:0.48, radius:1, fx:0.14, fy:0.48, stop:0 rgba(255,255,255,0.03), stop:0.06 rgba(255,255,255,0.03), stop:0.06 transparent, stop:0.94 transparent), 
+              qradialgradient(cx:0.28, cy:0.87, radius:1, fx:0.28, fy:0.87, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.65, cy:0.14, radius:1, fx:0.65, fy:0.14, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.51, cy:0.36, radius:1, fx:0.51, fy:0.36, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qradialgradient(cx:0.06, cy:0.93, radius:1, fx:0.06, fy:0.93, stop:0 rgba(255,255,255,0.04), stop:0.04 rgba(255,255,255,0.04), stop:0.04 transparent, stop:0.96 transparent), 
+              qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 rgb(23, 233, 173), stop:1 rgb(29, 24, 208));
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">margin-top: 0px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+    color:#fff;
+    padding:15px;
+    text-align:center;
+background: rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-left: 1px solid rgba(255,255,255,0.2);
+height: 30%;</string>
+      </property>
+      <property name="text">
+       <string>Login</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="username">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#username
+{
+background: rgba(255, 255, 255, 0.9);
+height: 50%;
+padding: 2px 14px;
+border-radius: 3px;
+
+        border-color: #81c63f;
+}
+#username:focus
+{
+background: rgba(255,255,255,1);
+}</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Username</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLineEdit" name="password">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#password
+{
+background: rgba(255, 255, 255, 0.9);
+height: 50%;
+padding: 2px 14px;
+border-radius: 3px;
+
+        border-color: #81c63f;
+}
+#password:focus
+{
+background: rgba(255,255,255,1);
+}</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Password</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loginbutton">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 0.1);
+border: none;
+border-radius: 5px;
+padding: 7px 14px;
+color: white;</string>
+        </property>
+        <property name="text">
+         <string>Login</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="registerbutton">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 0.1);
+border: none;
+border-radius: 5px;
+padding: 7px 14px;
+color: white;</string>
+        </property>
+        <property name="text">
+         <string>Registration</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

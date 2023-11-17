@@ -5,6 +5,7 @@
 #include "DB/tables/expense_items.hpp"
 #include "DB/tables/sales.hpp"
 #include "DB/tables/warehouses.hpp"
+#include "DB/tables/users.hpp"
 
 namespace DB
 {
@@ -26,12 +27,14 @@ namespace DB
     TableExpenseItems & expense_items();
     TableSales & sales();
     TableWarehouses & warehouses();
+    TableUsers & users();
 
    private:
     TableCharges _charges;
     TableExpenseItems _expense_items;
     TableSales _sales;
     TableWarehouses _warehouses;
+    TableUsers _users;
   };
 }
 

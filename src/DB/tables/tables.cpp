@@ -4,7 +4,8 @@ DB::Tables::Tables(const pq_worker_ptr & pq_worker):
   _charges{ pq_worker },
   _expense_items{ pq_worker },
   _sales{ pq_worker },
-  _warehouses{ pq_worker }
+  _warehouses{ pq_worker },
+  _users{ pq_worker }
 {}
 
 DB::TableCharges & DB::Tables::charges()
@@ -22,4 +23,8 @@ DB::TableSales & DB::Tables::sales()
 DB::TableWarehouses & DB::Tables::warehouses()
 {
   return _warehouses;
+}
+DB::TableUsers & DB::Tables::users()
+{
+  return _users;
 }

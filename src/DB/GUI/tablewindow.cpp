@@ -17,6 +17,11 @@ TableWindow::TableWindow(const tables_ptr & tables, QWidget * parent):
 
   connect(ui->refreshButton, &QPushButton::clicked, this, &TableWindow::_refresh);
   connect(ui->tablesBox, &QComboBox::currentTextChanged, this, &TableWindow::_refresh);
+
+  // Clear Table
+  ui->table->clear();
+  ui->table->setRowCount(0);
+  ui->table->setColumnCount(0);
 }
 
 TableWindow::~TableWindow()
