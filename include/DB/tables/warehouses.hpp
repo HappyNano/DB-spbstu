@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <iosfwd>
 
 #include <pqxx/pqxx>
@@ -41,6 +42,9 @@ namespace DB
     const headers_t & getHeaders() const;
 
     std::vector< row_t > selectAll();
+    std::set< std::pair< int, std::string > > getProducts();
+
+    void insert(const std::string & name, int quantity, double amount);
 
    private:
     pq_worker_ptr _pq_worker;

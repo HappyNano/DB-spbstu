@@ -34,3 +34,20 @@ std::vector< typename DB::TableExpenseItems::row_t > DB::TableExpenseItems::sele
 
   return rows;
 }
+
+std::set< std::pair< int, std::string > > DB::TableExpenseItems::getExpenseItems()
+{
+  std::set< std::pair< int, std::string > > expense_items;
+  auto all = selectAll();
+  for (auto && row: all)
+  {
+    expense_items.insert({ row.id, row.name });
+  }
+  return expense_items;
+}
+
+void DB::TableExpenseItems::insert(const std::string & name)
+{
+  _pq_worker->exec("INSERT INTO charges(name) VALUES('" + _pq_worker->esc(name) + "')");
+  _pq_worker->commit();
+}

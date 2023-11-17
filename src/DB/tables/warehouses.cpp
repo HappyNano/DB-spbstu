@@ -38,3 +38,21 @@ std::vector< typename DB::TableWarehouses::row_t > DB::TableWarehouses::selectAl
 
   return rows;
 }
+
+std::set< std::pair< int, std::string > > DB::TableWarehouses::getProducts()
+{
+  std::set< std::pair< int, std::string > > products;
+  auto all = selectAll();
+  for (auto && row: all)
+  {
+    products.insert({ row.id, row.name });
+  }
+  return products;
+}
+
+void DB::TableWarehouses::insert(const std::string & name, int quantity, double amount)
+{
+  _pq_worker->exec("INSERT INTO charges(name, quantity, amount) VALUES('" + _pq_worker->esc(name) + "', " + std::to_string(quantity) +
+                   ", " + std::to_string(amount) + ")");
+  _pq_worker->commit();
+}
