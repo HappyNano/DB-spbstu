@@ -10,6 +10,8 @@
 #include "DB/GUI/tables/salesedit_dialog.hpp"
 #include "DB/GUI/tables/warehousesedit_dialog.hpp"
 
+#include "DB/GUI/error_dialog.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -35,6 +37,8 @@ class TableWindow: public QWidget
   ExpenseItemsEditDialog * _expenseItemsEdit_dialog;
   SalesEditDialog * _salesEdit_dialog;
   WarehousesEditDialog * _warehousesEdit_dialog;
+
+  ErrorDialog * _error_dialog;
 
   void _refresh();
 };

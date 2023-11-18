@@ -13,7 +13,7 @@ namespace DB
   {
    public:
     using this_t = Tables;
-    using pq_worker_ptr = std::shared_ptr< pqxx::work >;
+    using pq_worker_ptr = std::shared_ptr< pqxx::nontransaction >;
 
     Tables(const pq_worker_ptr & pq_worker);
 

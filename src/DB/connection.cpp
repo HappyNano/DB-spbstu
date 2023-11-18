@@ -9,7 +9,7 @@ DB::Connection::Connection(const std::string & arg):
   try
   {
     _connection_ptr = std::make_unique< pqxx::connection >(arg);
-    _worker_ptr = std::make_unique< pqxx::work >(*_connection_ptr);
+    _worker_ptr = std::make_unique< pqxx::nontransaction >(*_connection_ptr);
     _is_connected = true;
   }
   catch (const std::exception & e)
@@ -29,7 +29,7 @@ std::shared_ptr< pqxx::connection > DB::Connection::connection()
   return _connection_ptr;
 }
 
-std::shared_ptr< pqxx::work > DB::Connection::worker()
+std::shared_ptr< pqxx::nontransaction > DB::Connection::worker()
 {
   return _worker_ptr;
 }

@@ -15,7 +15,7 @@ namespace DB
     using this_t = TableUsers;
     using headers_t = std::vector< std::string >;
 
-    using pq_worker_ptr = std::shared_ptr< pqxx::work >;
+    using pq_worker_ptr = std::shared_ptr< pqxx::nontransaction >;
 
     TableUsers(const pq_worker_ptr & pq_worker);
 

@@ -23,11 +23,11 @@ namespace DB
     bool is_connected();
 
     std::shared_ptr< pqxx::connection > connection();
-    std::shared_ptr< pqxx::work > worker();
+    std::shared_ptr< pqxx::nontransaction > worker();
 
    private:
     std::shared_ptr< pqxx::connection > _connection_ptr;
-    std::shared_ptr< pqxx::work > _worker_ptr;
+    std::shared_ptr< pqxx::nontransaction > _worker_ptr;
 
     bool _is_connected;
   };

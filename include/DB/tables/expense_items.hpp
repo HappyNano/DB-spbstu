@@ -27,7 +27,7 @@ namespace DB
     using headers_t = std::vector< std::string >;
     using row_t = ExpenseItemsRow;
 
-    using pq_worker_ptr = std::shared_ptr< pqxx::work >;
+    using pq_worker_ptr = std::shared_ptr< pqxx::nontransaction >;
 
     TableExpenseItems(const pq_worker_ptr & pq_worker);
 

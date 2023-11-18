@@ -15,7 +15,6 @@ void DB::TableUsers::registerUser(const std::string & username, const std::strin
 
   _pq_worker->exec(
    "INSERT INTO users(username, password) VALUES('" + _pq_worker->esc(username) + "', '" + _pq_worker->esc(password) + "')");
-  _pq_worker->commit();
 }
 
 bool DB::TableUsers::checkUserPassword(const std::string & username, const std::string & password)

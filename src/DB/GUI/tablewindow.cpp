@@ -28,6 +28,8 @@ TableWindow::TableWindow(const tables_ptr & tables, QWidget * parent):
   _expenseItemsEdit_dialog = new ExpenseItemsEditDialog(_tables_ptr);
   _salesEdit_dialog = new SalesEditDialog(_tables_ptr);
   _warehousesEdit_dialog = new WarehousesEditDialog(_tables_ptr);
+
+  _error_dialog = new ErrorDialog();
 }
 
 TableWindow::~TableWindow()
@@ -78,7 +80,15 @@ void TableWindow::_refresh()
          &QPushButton::clicked,
          [this, id = rows.at(i).id]()
          {
-           _tables_ptr->charges().remove(id);
+           try
+           {
+             _tables_ptr->charges().remove(id);
+           }
+           catch (const std::exception & e)
+           {
+             _error_dialog->updateMsg(e.what());
+             _error_dialog->show();
+           }
            _refresh();
          });
         btn_remove->setText("x");
