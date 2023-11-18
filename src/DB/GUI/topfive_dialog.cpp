@@ -1,6 +1,7 @@
 #include "DB/GUI/topfive_dialog.hpp"
 #include "./ui_topfive_dialog.h"
 #include <iostream>
+#include "DB/utility/log.hpp"
 
 TopFiveDialog::TopFiveDialog(const DB::Connection::shared & connection_ptr, QWidget * parent):
   QDialog(parent),
@@ -33,6 +34,7 @@ void TopFiveDialog::_get()
    std::string("SELECT warehouses.name AS name, SUM(sales.amount * sales.quantity) AS profit FROM sales ") +
    "INNER JOIN warehouses ON sales.warehouse_id = warehouses.id " + "WHERE sales.sale_date >= '" + dateFrom_str +
    "' AND sales.sale_date <= '" + dateTo_str + "'" + " GROUP BY name ORDER BY profit DESC LIMIT 5";
+  log::instance() << DateTime{} << Tag{ "TopFive Class" } << "Query: '" << command << "'\n";
   pqxx::result result = _connection_ptr->worker()->exec(command);
 
   auto topFive_labels = { ui->firstLabel, ui->secondLabel, ui->thirdLabel, ui->fourthLabel, ui->fifthLabel };

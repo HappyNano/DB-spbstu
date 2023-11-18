@@ -1,4 +1,5 @@
 #include "DB/tables/sales.hpp"
+#include "DB/utility/log.hpp"
 
 std::ostream & DB::operator<<(std::ostream & out, const SalesRow & row)
 {
@@ -30,7 +31,9 @@ const typename DB::TableSales::headers_t & DB::TableSales::getHeaders() const
 
 std::vector< typename DB::TableSales::row_t > DB::TableSales::selectAll()
 {
-  auto result = _pq_worker->exec("SELECT * FROM sales");
+  auto command = "SELECT * FROM sales";
+  log::instance() << DateTime{} << Tag{ "Sales Class" } << "Query: '" << command << "'\n";
+  auto result = _pq_worker->exec(command);
 
   std::vector< row_t > rows;
   for (auto && res: result)
@@ -43,17 +46,23 @@ std::vector< typename DB::TableSales::row_t > DB::TableSales::selectAll()
 
 void DB::TableSales::insert(double amount, int quantity, const std::string & sale_date, int warehouse_id)
 {
-  _pq_worker->exec("INSERT INTO sales(amount, quantity, sale_date, warehouse_id) VALUES(" + std::to_string(amount) + ", " +
-                   std::to_string(quantity) + ", '" + _pq_worker->esc(sale_date) + "', " + std::to_string(warehouse_id) + ")");
+  auto command = "INSERT INTO sales(amount, quantity, sale_date, warehouse_id) VALUES(" + std::to_string(amount) + ", " +
+                 std::to_string(quantity) + ", '" + _pq_worker->esc(sale_date) + "', " + std::to_string(warehouse_id) + ")";
+  log::instance() << DateTime{} << Tag{ "Sales Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableSales::remove(int id)
 {
-  _pq_worker->exec("DELETE FROM sales WHERE id=" + std::to_string(id));
+  auto command = "DELETE FROM sales WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Sales Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableSales::update(int id, double amount, int quantity, const std::string & sale_date, int warehouse_id)
 {
-  _pq_worker->exec("UPDATE sales SET amount=" + std::to_string(amount) + ", quantity=" + std::to_string(quantity) + ", sale_date='" +
-                   _pq_worker->esc(sale_date) + "', warehouse_id=" + std::to_string(warehouse_id) + " WHERE id=" + std::to_string(id));
+  auto command = "UPDATE sales SET amount=" + std::to_string(amount) + ", quantity=" + std::to_string(quantity) + ", sale_date='" +
+                 _pq_worker->esc(sale_date) + "', warehouse_id=" + std::to_string(warehouse_id) + " WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Sales Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }

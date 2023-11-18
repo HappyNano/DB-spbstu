@@ -1,4 +1,5 @@
 #include "DB/tables/warehouses.hpp"
+#include "DB/utility/log.hpp"
 
 std::ostream & DB::operator<<(std::ostream & out, const WarehousesRow & row)
 {
@@ -28,7 +29,9 @@ const typename DB::TableWarehouses::headers_t & DB::TableWarehouses::getHeaders(
 
 std::vector< typename DB::TableWarehouses::row_t > DB::TableWarehouses::selectAll()
 {
-  auto result = _pq_worker->exec("SELECT * FROM warehouses");
+  auto command = "SELECT * FROM warehouses";
+  log::instance() << DateTime{} << Tag{ "Warehouses Class" } << "Query: '" << command << "'\n";
+  auto result = _pq_worker->exec(command);
 
   std::vector< row_t > rows;
   for (auto && res: result)
@@ -52,17 +55,23 @@ std::set< std::pair< int, std::string > > DB::TableWarehouses::getProducts()
 
 void DB::TableWarehouses::insert(const std::string & name, int quantity, double amount)
 {
-  _pq_worker->exec("INSERT INTO warehouses(name, quantity, amount) VALUES('" + _pq_worker->esc(name) + "', " + std::to_string(quantity) +
-                   ", " + std::to_string(amount) + ")");
+  auto command = "INSERT INTO warehouses(name, quantity, amount) VALUES('" + _pq_worker->esc(name) + "', " + std::to_string(quantity) +
+                 ", " + std::to_string(amount) + ")";
+  log::instance() << DateTime{} << Tag{ "Warehouses Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableWarehouses::remove(int id)
 {
-  _pq_worker->exec("DELETE FROM warehouses WHERE id=" + std::to_string(id));
+  auto command = "DELETE FROM warehouses WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Warehouses Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableWarehouses::update(int id, const std::string & name, int quantity, double amount)
 {
-  _pq_worker->exec("UPDATE warehouses SET name='" + _pq_worker->esc(name) + "', quantity=" + std::to_string(quantity) +
-                   ", amount=" + std::to_string(amount) + " WHERE id=" + std::to_string(id));
+  auto command = "UPDATE warehouses SET name='" + _pq_worker->esc(name) + "', quantity=" + std::to_string(quantity) +
+                 ", amount=" + std::to_string(amount) + " WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Warehouses Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }

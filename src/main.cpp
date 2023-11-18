@@ -11,8 +11,11 @@
 #include <QLocale>
 #include <QTranslator>
 
+#include "DB/utility/log.hpp"
+
 int main(int argc, char * argv[])
 {
+  log::instance() << DateTime{} << Tag{ "MAIN" } << "Started Application\n";
   auto connection_ptr = std::make_shared< DB::Connection >("config/db.ini");
 
   // // int employee_id = txn.query_value< int >(

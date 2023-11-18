@@ -1,12 +1,14 @@
 #include "DB/connection.hpp"
 #include "DB/utility/ini.h"
 #include <iostream>
+#include "DB/utility/log.hpp"
 
 DB::Connection::Connection(const std::string & filename):
   _connection_ptr{},
   _worker_ptr{},
   _is_connected{ false }
 {
+  log::instance() << DateTime{} << Tag{ "INI" } << "Reading " << filename << " file\n";
   mINI::INIFile file(filename);
   mINI::INIStructure ini;
   file.read(ini);
@@ -20,6 +22,7 @@ DB::Connection::Connection(const std::string & filename):
    std::string("dbname = ") + dbname + " user = " + user + " password = " + password + " hostaddr = " + host + " port = " + port;
   try
   {
+    log::instance() << DateTime{} << Tag{ "PostgreQL" } << "Connecting to database\n";
     _connection_ptr = std::make_unique< pqxx::connection >(arg);
     _worker_ptr = std::make_unique< pqxx::nontransaction >(*_connection_ptr);
     _is_connected = true;
@@ -29,6 +32,7 @@ DB::Connection::Connection(const std::string & filename):
     std::cerr << e.what() << '\n';
     _is_connected = false;
   }
+  log::instance() << DateTime{} << Tag{ "PostgreQL" } << "Connected\n";
 }
 
 bool DB::Connection::is_connected()

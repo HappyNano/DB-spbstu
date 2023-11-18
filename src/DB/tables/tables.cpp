@@ -1,4 +1,5 @@
 #include "DB/tables/tables.hpp"
+#include "DB/utility/log.hpp"
 
 DB::Tables::Tables(const pq_worker_ptr & pq_worker):
   _charges{ pq_worker },
@@ -6,7 +7,9 @@ DB::Tables::Tables(const pq_worker_ptr & pq_worker):
   _sales{ pq_worker },
   _warehouses{ pq_worker },
   _users{ pq_worker }
-{}
+{
+  log::instance() << DateTime{} << Tag{ "Tables" } << "Created Tables Class\n";
+}
 
 DB::TableCharges & DB::Tables::charges()
 {

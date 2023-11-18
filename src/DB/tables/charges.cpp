@@ -1,4 +1,5 @@
 #include "DB/tables/charges.hpp"
+#include "DB/utility/log.hpp"
 
 std::ostream & DB::operator<<(std::ostream & out, const ChargesRow & row)
 {
@@ -28,7 +29,9 @@ const typename DB::TableCharges::headers_t & DB::TableCharges::getHeaders() cons
 
 std::vector< typename DB::TableCharges::row_t > DB::TableCharges::selectAll()
 {
-  auto result = _pq_worker->exec("SELECT * FROM charges");
+  auto command = "SELECT * FROM charges";
+  log::instance() << DateTime{} << Tag{ "Charges Class" } << "Query: '" << command << "'\n";
+  auto result = _pq_worker->exec(command);
 
   std::vector< row_t > rows;
   for (auto && res: result)
@@ -41,17 +44,23 @@ std::vector< typename DB::TableCharges::row_t > DB::TableCharges::selectAll()
 
 void DB::TableCharges::insert(double amount, const std::string & charge_data, int expense_item_id)
 {
-  _pq_worker->exec("INSERT INTO charges(amount, charge_data, expense_item_id) VALUES(" + std::to_string(amount) + ", '" +
-                   _pq_worker->esc(charge_data) + "', " + std::to_string(expense_item_id) + ")");
+  auto command = "INSERT INTO charges(amount, charge_data, expense_item_id) VALUES(" + std::to_string(amount) + ", '" +
+                 _pq_worker->esc(charge_data) + "', " + std::to_string(expense_item_id) + ")";
+  log::instance() << DateTime{} << Tag{ "Charges Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableCharges::remove(int id)
 {
-  _pq_worker->exec("DELETE FROM charges WHERE id = " + std::to_string(id));
+  auto command = "DELETE FROM charges WHERE id = " + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Charges Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableCharges::update(int id, double amount, const std::string & charge_data, int expense_item_id)
 {
-  _pq_worker->exec("UPDATE charges SET amount=" + std::to_string(amount) + ", charge_data='" + _pq_worker->esc(charge_data) +
-                   "', expense_item_id=" + std::to_string(expense_item_id) + " WHERE id=" + std::to_string(id));
+  auto command = "UPDATE charges SET amount=" + std::to_string(amount) + ", charge_data='" + _pq_worker->esc(charge_data) +
+                 "', expense_item_id=" + std::to_string(expense_item_id) + " WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "Charges Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }

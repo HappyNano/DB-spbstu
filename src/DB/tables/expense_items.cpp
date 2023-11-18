@@ -1,4 +1,5 @@
 #include "DB/tables/expense_items.hpp"
+#include "DB/utility/log.hpp"
 
 std::ostream & DB::operator<<(std::ostream & out, const ExpenseItemsRow & row)
 {
@@ -24,6 +25,8 @@ const typename DB::TableExpenseItems::headers_t & DB::TableExpenseItems::getHead
 
 std::vector< typename DB::TableExpenseItems::row_t > DB::TableExpenseItems::selectAll()
 {
+  log::instance() << DateTime{} << Tag{ "ExpenseItems Class" } << "Query: "
+                  << "'SELECT * FROM expense_items'\n";
   auto result = _pq_worker->exec("SELECT * FROM expense_items");
 
   std::vector< row_t > rows;
@@ -48,15 +51,21 @@ std::set< std::pair< int, std::string > > DB::TableExpenseItems::getExpenseItems
 
 void DB::TableExpenseItems::insert(const std::string & name)
 {
-  _pq_worker->exec("INSERT INTO expense_items(name) VALUES('" + _pq_worker->esc(name) + "')");
+  auto command = "INSERT INTO expense_items(name) VALUES('" + _pq_worker->esc(name) + "')";
+  log::instance() << DateTime{} << Tag{ "ExpenseItems Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableExpenseItems::remove(int id)
 {
-  _pq_worker->exec("DELETE FROM expense_items WHERE id = " + std::to_string(id));
+  auto command = "DELETE FROM expense_items WHERE id = " + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "ExpenseItems Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }
 
 void DB::TableExpenseItems::update(int id, const std::string & name)
 {
-  _pq_worker->exec("UPDATE expense_items SET name='" + _pq_worker->esc(name) + "' WHERE id=" + std::to_string(id));
+  auto command = "UPDATE expense_items SET name='" + _pq_worker->esc(name) + "' WHERE id=" + std::to_string(id);
+  log::instance() << DateTime{} << Tag{ "ExpenseItems Class" } << "Query: '" << command << "'\n";
+  _pq_worker->exec(command);
 }

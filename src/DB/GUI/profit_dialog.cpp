@@ -1,6 +1,7 @@
 #include "DB/GUI/profit_dialog.hpp"
 #include "./ui_profit_dialog.h"
 #include <iostream>
+#include "DB/utility/log.hpp"
 
 ProfitDialog::ProfitDialog(const DB::Connection::shared & connection_ptr, QWidget * parent):
   QDialog(parent),
@@ -29,8 +30,9 @@ void ProfitDialog::_calc()
    std::to_string(dateFrom.year()) + "-" + std::to_string(dateFrom.month()) + "-" + std::to_string(dateFrom.day());
   std::string dateTo_str = std::to_string(dateTo.year()) + "-" + std::to_string(dateTo.month()) + "-" + std::to_string(dateTo.day());
 
-  pqxx::result result = _connection_ptr->worker()->exec(
-   "SELECT * FROM get_income_and_charge_func('" + dateFrom_str + "'::TIMESTAMP, '" + dateTo_str + "'::TIMESTAMP);");
+  std::string command = "SELECT * FROM get_income_and_charge_func('" + dateFrom_str + "'::TIMESTAMP, '" + dateTo_str + "'::TIMESTAMP);";
+  log::instance() << DateTime{} << Tag{ "ProfitCalc Class" } << "Query: '" << command << "'\n";
+  pqxx::result result = _connection_ptr->worker()->exec(command);
 
   double income = 0;
   double charge = 0;
