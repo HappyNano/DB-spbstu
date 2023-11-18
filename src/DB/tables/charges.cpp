@@ -49,3 +49,9 @@ void DB::TableCharges::remove(int id)
 {
   _pq_worker->exec("DELETE FROM charges WHERE id = " + std::to_string(id));
 }
+
+void DB::TableCharges::update(int id, double amount, const std::string & charge_data, int expense_item_id)
+{
+  _pq_worker->exec("UPDATE charges SET amount=" + std::to_string(amount) + ", charge_data='" + _pq_worker->esc(charge_data) +
+                   "', expense_item_id=" + std::to_string(expense_item_id) + " WHERE id=" + std::to_string(id));
+}

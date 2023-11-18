@@ -44,6 +44,7 @@ namespace DB
 
     void insert(double amount, const std::string & charge_data, int expense_item_id);
     void remove(int id);
+    void update(int id, double amount, const std::string & charge_data, int expense_item_id);
 
    private:
     pq_worker_ptr _pq_worker;

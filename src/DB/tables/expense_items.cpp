@@ -55,3 +55,8 @@ void DB::TableExpenseItems::remove(int id)
 {
   _pq_worker->exec("DELETE FROM expense_items WHERE id = " + std::to_string(id));
 }
+
+void DB::TableExpenseItems::update(int id, const std::string & name)
+{
+  _pq_worker->exec("UPDATE expense_items SET name='" + _pq_worker->esc(name) + "' WHERE id=" + std::to_string(id));
+}

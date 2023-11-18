@@ -51,3 +51,9 @@ void DB::TableSales::remove(int id)
 {
   _pq_worker->exec("DELETE FROM sales WHERE id=" + std::to_string(id));
 }
+
+void DB::TableSales::update(int id, double amount, int quantity, const std::string & sale_date, int warehouse_id)
+{
+  _pq_worker->exec("UPDATE sales SET amount=" + std::to_string(amount) + ", quantity=" + std::to_string(quantity) + ", sale_date='" +
+                   _pq_worker->esc(sale_date) + "', warehouse_id=" + std::to_string(warehouse_id) + " WHERE id=" + std::to_string(id));
+}

@@ -44,7 +44,7 @@ background: qradialgradient(cx:0.3, cy:0.86, radius:1, fx:0.3, fy:0.86, stop:0 r
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">

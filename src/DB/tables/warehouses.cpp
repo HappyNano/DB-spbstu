@@ -60,3 +60,9 @@ void DB::TableWarehouses::remove(int id)
 {
   _pq_worker->exec("DELETE FROM warehouses WHERE id=" + std::to_string(id));
 }
+
+void DB::TableWarehouses::update(int id, const std::string & name, int quantity, double amount)
+{
+  _pq_worker->exec("UPDATE warehouses SET name='" + _pq_worker->esc(name) + "', quantity=" + std::to_string(quantity) +
+                   ", amount=" + std::to_string(amount) + " WHERE id=" + std::to_string(id));
+}

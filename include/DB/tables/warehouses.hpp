@@ -46,6 +46,7 @@ namespace DB
 
     void insert(const std::string & name, int quantity, double amount);
     void remove(int id);
+    void update(int id, const std::string & name, int quantity, double amount);
 
    private:
     pq_worker_ptr _pq_worker;

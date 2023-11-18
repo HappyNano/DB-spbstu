@@ -5,6 +5,11 @@
 #include <memory>
 #include "DB/tables/tables.hpp"
 
+#include "DB/GUI/tables/chargesedit_dialog.hpp"
+#include "DB/GUI/tables/expenseitemsedit_dialog.hpp"
+#include "DB/GUI/tables/salesedit_dialog.hpp"
+#include "DB/GUI/tables/warehousesedit_dialog.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -25,6 +30,11 @@ class TableWindow: public QWidget
  private:
   Ui::TableWindow * ui;
   tables_ptr _tables_ptr;
+
+  ChargesEditDialog * _chargesEdit_dialog;
+  ExpenseItemsEditDialog * _expenseItemsEdit_dialog;
+  SalesEditDialog * _salesEdit_dialog;
+  WarehousesEditDialog * _warehousesEdit_dialog;
 
   void _refresh();
 };

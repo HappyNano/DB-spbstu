@@ -45,6 +45,7 @@ namespace DB
 
     void insert(double amount, int quantity, const std::string & sale_date, int warehouse_id);
     void remove(int id);
+    void update(int id, double amount, int quantity, const std::string & sale_date, int warehouse_id);
 
    private:
     pq_worker_ptr _pq_worker;
