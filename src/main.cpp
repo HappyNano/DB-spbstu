@@ -13,7 +13,7 @@
 
 int main(int argc, char * argv[])
 {
-  auto connection_ptr = std::make_shared< DB::Connection >("dbname = lab user = admin password = admin hostaddr = 127.0.0.1 port = 5432");
+  auto connection_ptr = std::make_shared< DB::Connection >("config/db.ini");
 
   // // int employee_id = txn.query_value< int >(
   // //  "SELECT *"

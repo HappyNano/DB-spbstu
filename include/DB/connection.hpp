@@ -12,7 +12,7 @@ namespace DB
     using this_t = Connection;
     using shared = std::shared_ptr< Connection >;
 
-    Connection(const std::string & arg);
+    Connection(const std::string & filename);
 
     Connection(const this_t &) = delete;
     Connection(this_t &&) noexcept = delete;
