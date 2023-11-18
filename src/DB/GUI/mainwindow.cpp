@@ -39,6 +39,15 @@ MainWindow::MainWindow(const DB::Connection::shared & connection_ptr, QWidget * 
      _editorwindow->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
    });
 
+  _profitdialog = new ProfitDialog(connection_ptr);
+  connect(ui->profitTablesButton,
+   &QPushButton::clicked,
+   [&]()
+   {
+     _profitdialog->show();
+     _profitdialog->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
+   });
+
   ui->centralwidget->setEnabled(false);
 
   _logindialog = new LoginDialog(_tables_ptr);

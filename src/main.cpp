@@ -86,6 +86,7 @@ int main(int argc, char * argv[])
   // return run();
 
   auto tables_ptr = std::make_shared< DB::Tables >(connection_ptr->worker());
+
   QApplication a(argc, argv);
   MainWindow w(connection_ptr);
 

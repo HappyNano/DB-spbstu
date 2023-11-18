@@ -7,6 +7,7 @@
 #include "DB/GUI/error_dialog.hpp"
 #include "DB/GUI/login_dialog.hpp"
 #include "DB/GUI/editorwindow.hpp"
+#include "DB/GUI/profit_dialog.hpp"
 #include "DB/connection.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -35,6 +36,7 @@ class MainWindow: public QMainWindow
   ErrorDialog * _errordialog;
   LoginDialog * _logindialog;
   EditorWindow * _editorwindow;
+  ProfitDialog * _profitdialog;
 };
 
 #endif

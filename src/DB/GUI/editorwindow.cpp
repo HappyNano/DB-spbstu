@@ -133,6 +133,6 @@ void EditorWindow::_update()
   {
     ui->salesProduct->addItem(item.second.c_str());
   }
-  ui->chatgesDate->setDate(QDate::currentDate());
-  ui->salesDatetime->setDate(QDate::currentDate());
+  ui->chatgesDate->setDateTime(QDateTime::currentDateTime());
+  ui->salesDatetime->setDateTime(QDateTime::currentDateTime());
 }
