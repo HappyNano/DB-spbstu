@@ -68,7 +68,11 @@ set(PROJECT_SOURCES
 # Создаем исполняемый файл
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets pqxx)
+# XL lib
+include_directories(${EXTERNAL_DIR}/libxl-4.2.0/include_cpp)
+###
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets pqxx ${EXTERNAL_DIR}/libxl-4.2.0/lib64/libxl.so)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY})

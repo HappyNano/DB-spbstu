@@ -39,6 +39,8 @@ class MainWindow: public QMainWindow
   EditorWindow * _editorwindow;
   ProfitDialog * _profitdialog;
   TopFiveDialog * _topfivedialog;
+
+  void _saveXlsx();
 };
 
 #endif

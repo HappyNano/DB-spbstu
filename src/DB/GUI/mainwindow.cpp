@@ -1,8 +1,10 @@
 #include "DB/GUI/mainwindow.hpp"
 #include "./ui_mainwindow.h"
 #include <iostream>
+#include <libxl.h>
 
 // #define button
+using namespace libxl;
 
 MainWindow::MainWindow(const DB::Connection::shared & connection_ptr, QWidget * parent):
   QMainWindow(parent),
@@ -70,9 +72,100 @@ MainWindow::MainWindow(const DB::Connection::shared & connection_ptr, QWidget * 
 
   ui->centralwidget->setEnabled(true);
   this->show();
+
+  connect(ui->saveButton, &QPushButton::clicked, this, &MainWindow::_saveXlsx);
 }
 
 MainWindow::~MainWindow()
 {
   delete ui;
+}
+
+void MainWindow::_saveXlsx()
+{
+  Book * book = xlCreateXMLBook();
+  if (book)
+  {
+    {
+      Sheet * sheet = book->addSheet("Charges");
+      if (sheet)
+      {
+        int i = 0;
+        for (auto && header: _tables_ptr->charges().getHeaders())
+        {
+          sheet->writeStr(1, i++, header.c_str());
+        }
+        i = 2;
+        for (auto && row: _tables_ptr->charges().selectAll())
+        {
+          sheet->writeNum(i, 0, row.id);
+          sheet->writeNum(i, 1, row.amount);
+          sheet->writeStr(i, 2, row.charge_data.c_str());
+          sheet->writeNum(i++, 3, row.expense_item_id);
+        }
+      }
+    }
+
+    {
+      Sheet * sheet = book->addSheet("Expense Items");
+      if (sheet)
+      {
+        int i = 0;
+        for (auto && header: _tables_ptr->expense_items().getHeaders())
+        {
+          sheet->writeStr(1, i++, header.c_str());
+        }
+        i = 2;
+        for (auto && row: _tables_ptr->expense_items().selectAll())
+        {
+          sheet->writeNum(i, 0, row.id);
+          sheet->writeStr(i++, 1, row.name.c_str());
+        }
+      }
+    }
+
+    {
+      Sheet * sheet = book->addSheet("Sales");
+      if (sheet)
+      {
+        int i = 0;
+        for (auto && header: _tables_ptr->sales().getHeaders())
+        {
+          sheet->writeStr(1, i++, header.c_str());
+        }
+        i = 2;
+        for (auto && row: _tables_ptr->sales().selectAll())
+        {
+          sheet->writeNum(i, 0, row.id);
+          sheet->writeNum(i, 1, row.amount);
+          sheet->writeNum(i, 2, row.quantity);
+          sheet->writeStr(i, 3, row.sale_date.c_str());
+          sheet->writeNum(i++, 4, row.warehouse_id);
+        }
+      }
+    }
+
+    {
+      Sheet * sheet = book->addSheet("Warehouses");
+      if (sheet)
+      {
+        int i = 0;
+        for (auto && header: _tables_ptr->warehouses().getHeaders())
+        {
+          sheet->writeStr(1, i++, header.c_str());
+        }
+        i = 2;
+        for (auto && row: _tables_ptr->warehouses().selectAll())
+        {
+          sheet->writeNum(i, 0, row.id);
+          sheet->writeStr(i, 1, row.name.c_str());
+          sheet->writeNum(i, 2, row.quantity);
+          sheet->writeNum(i++, 3, row.amount);
+        }
+      }
+    }
+
+    book->save("tables.xlsx");
+    book->release();
+  }
 }
