@@ -9,6 +9,7 @@
 #include "DB/GUI/editorwindow.hpp"
 #include "DB/GUI/profit_dialog.hpp"
 #include "DB/GUI/topfive_dialog.hpp"
+#include "DB/GUI/logswidget.hpp"
 #include "DB/connection.hpp"
 
 QT_BEGIN_NAMESPACE
@@ -39,6 +40,8 @@ class MainWindow: public QMainWindow
   EditorWindow * _editorwindow;
   ProfitDialog * _profitdialog;
   TopFiveDialog * _topfivedialog;
+
+  LogsWidget * _logswidget;
 
   void _saveXlsx();
 };

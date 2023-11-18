@@ -59,6 +59,15 @@ MainWindow::MainWindow(const DB::Connection::shared & connection_ptr, QWidget * 
      _topfivedialog->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
    });
 
+  _logswidget = new LogsWidget();
+  connect(ui->showLogsButton,
+   &QPushButton::clicked,
+   [&]()
+   {
+     _logswidget->showLogs();
+     _logswidget->setFocus(Qt::FocusReason::ActiveWindowFocusReason);
+   });
+
   ui->centralwidget->setEnabled(false);
 
   _logindialog = new LoginDialog(_tables_ptr);
